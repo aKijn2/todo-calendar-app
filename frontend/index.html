@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Calendar</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>📋</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+        </header>
+
+        <main>
+            <div class="content-wrapper">
+                <!-- Calendar Section -->
+                <section class="calendar-section">
+                    <div class="calendar-header">
+                        <button class="nav-btn" id="prevMonth">←</button>
+                        <h2 id="monthYear"></h2>
+                        <button class="nav-btn" id="nextMonth">→</button>
+                    </div>
+                    <div class="calendar">
+                        <div class="weekdays">
+                            <div class="weekday">Sun</div>
+                            <div class="weekday">Mon</div>
+                            <div class="weekday">Tue</div>
+                            <div class="weekday">Wed</div>
+                            <div class="weekday">Thu</div>
+                            <div class="weekday">Fri</div>
+                            <div class="weekday">Sat</div>
+                        </div>
+                        <div class="days" id="calendarDays"></div>
+                    </div>
+                </section>
+
+                <!-- Tasks Section -->
+                <section class="tasks-section">
+                    <div class="tasks-header">
+                        <h2>Tasks for <span id="selectedDate">Today</span></h2>
+                        <button id="todayBtn" class="today-btn">Today</button>
+                    </div>
+
+                    <!-- Add Task Form -->
+                    <div class="add-task-form">
+                        <input 
+                            type="text" 
+                            id="taskTitle" 
+                            placeholder="Add a new task..." 
+                            class="task-input"
+                        >
+                        <textarea 
+                            id="taskDescription" 
+                            placeholder="Task description (optional)" 
+                            class="task-description"
+                        ></textarea>
+                        <button id="addTaskBtn" class="add-btn">Add Task</button>
+                    </div>
+
+                    <!-- Tasks List -->
+                    <div class="tasks-list" id="tasksList">
+                        <p class="empty-message">No tasks for this day</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

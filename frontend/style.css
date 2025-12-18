@@ -1,0 +1,432 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --border-color: #e0e0e0;
+    --text-color: #333333;
+    --light-bg: #f9f9f9;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    color: #666;
+    font-weight: 300;
+}
+
+/* Main Content */
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+/* Calendar Section */
+.calendar-section {
+    background: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.calendar-header h2 {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    flex: 1;
+    text-align: center;
+}
+
+.nav-btn {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background: #333;
+    transform: scale(1.05);
+}
+
+/* Calendar Grid */
+.calendar {
+    width: 100%;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.weekday {
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-color);
+    padding: 10px 0;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--secondary-color);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+.day:hover {
+    background: var(--light-bg);
+    border-color: var(--primary-color);
+}
+
+.day.other-month {
+    color: #ccc;
+    cursor: default;
+}
+
+.day.today {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    font-weight: 700;
+    border-color: var(--primary-color);
+}
+
+.day.selected {
+    border: 2px solid var(--primary-color);
+    background: var(--light-bg);
+}
+
+.day.has-tasks::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    bottom: 5px;
+}
+
+.day.today.has-tasks::after {
+    background: var(--secondary-color);
+}
+
+/* Tasks Section */
+.tasks-section {
+    background: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.tasks-header h2 {
+    font-size: 1.3em;
+    color: var(--primary-color);
+}
+
+.today-btn {
+    background: var(--light-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.today-btn:hover {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Add Task Form */
+.add-task-form {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-input,
+.task-description {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.task-input {
+    height: 45px;
+}
+
+.task-description {
+    height: 70px;
+    resize: vertical;
+}
+
+.task-input:focus,
+.task-description:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-btn {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+/* Tasks List */
+.tasks-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.task-item {
+    background: var(--light-bg);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.task-item:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateX(4px);
+}
+
+.task-item.completed {
+    opacity: 0.6;
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+
+.task-description-text {
+    color: #666;
+    font-size: 0.95em;
+    margin-top: 4px;
+    word-break: break-word;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: 12px;
+    flex-shrink: 0;
+}
+
+.task-btn {
+    background: none;
+    border: 1px solid var(--text-color);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.task-btn.complete {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--primary-color);
+}
+
+.task-btn.complete:hover {
+    opacity: 0.8;
+}
+
+.task-btn.delete {
+    color: #d32f2f;
+    border-color: #d32f2f;
+}
+
+.task-btn.delete:hover {
+    background: #d32f2f;
+    color: var(--secondary-color);
+}
+
+.empty-message {
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .calendar-section,
+    .tasks-section {
+        padding: 20px;
+    }
+
+    .calendar-header {
+        margin-bottom: 20px;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.2em;
+    }
+
+    .task-item {
+        flex-direction: column;
+    }
+
+    .task-actions {
+        margin-left: 0;
+        margin-top: 12px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+/* Scrollbar Styling */
+.tasks-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tasks-list::-webkit-scrollbar-track {
+    background: var(--light-bg);
+    border-radius: 3px;
+}
+
+.tasks-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.tasks-list::-webkit-scrollbar-thumb:hover {
+    background: #333;
+}
